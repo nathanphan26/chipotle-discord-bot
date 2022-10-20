@@ -21,7 +21,7 @@ client.on('messageCreate', message => {
     // Exit and stop if it's not there
     if (!message.content.startsWith(prefix)) return;
 
-    let chiptoleRole = message.guild.roles.find("name", "Chipotle");
+    let chiptoleRole = message.guild.roles.cache.find("name", "Chipotle");
 
     console.log(message.member.roles.has(chiptoleRole))
 
