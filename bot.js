@@ -21,15 +21,15 @@ client.on('messageCreate', message => {
     // Exit and stop if it's not there
     if (!message.content.startsWith(prefix)) return;
 
-    let chiptoleRole = message.guild.roles.cache.find("name", "Chipotle");
-
-    console.log(message.member.roles.has(chiptoleRole))
-
-    // Get Chipotle Code
-    const code = message.content.substring(1)
-    // Format Reply Message
-    const reply = `<sms://888222/;?&body=${code}>`
-    message.reply(reply)
+    if (message.member.roles.cache.some(role => role.name === 'Chipotle Admin')) {
+       // Get Chipotle Code
+        const code = message.content.substring(1)
+        // Format Reply Message
+        const reply = `<sms://888222/;?&body=${code}>`
+        message.reply(reply)
+    } else {
+        message.reply('Must have Chipotle Admin role')
+    }
 })
 
 client.login(process.env.DISCORD_TOKEN);
